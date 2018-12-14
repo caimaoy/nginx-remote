@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx-remote
+    restart: unless-stopped
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d/
+      - ./remote:/home/remote
+    ports:
+      - '80:80'
+    environment:
+      - NGINX_HOST=your.domain
+      - NGINX_PORT=80
